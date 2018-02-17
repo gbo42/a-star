@@ -4,7 +4,7 @@ function node(i, j){
 
     this.f = -1;
     this.g = -1;
-    this.h = Math.abs(this.i-goali) + Math.abs(this.j-goalj);
+    this.h = Math.sqrt((this.i-goali)*(this.i-goali) + (this.j-goalj)*(this.j-goalj));
 
     this.parent;
 

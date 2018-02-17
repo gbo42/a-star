@@ -3,10 +3,16 @@ var grid, neighbors;
 var goal, goali, goalj;
 var closedSet = [], openSet = [];
 
+var blockcolor = 'rgba(0,0,0,0.4)';
+var backgcolor = 'rgba(255,255,255,1)';
+var opencolor = 'rgba(255,255,100,0.6)';
+var closedcolor = 'rgba(255,0,0,0.3)';
+var pathcolor = 'rgba(100,255,100,1)';
+
 function setup(){
     var csize = 600;
-    cols = 20;
-    rows = 20;
+    cols = 30;
+    rows = 30;
     w = csize/rows;
     goali = rows-1;
     goalj = cols-1;
@@ -36,10 +42,10 @@ function draw(){
         }
 
         var bestF = openSet.splice(bf, 1)[0];
-        console.log(bestF.f);
         neighbors = bestF.neighbors();
 
-        background(51);
+
+        background(backgcolor);
         for(let i = 0; i < rows; i++){
             for(let j = 0; j < cols; j++){
                 grid[i][j].show();
@@ -70,8 +76,9 @@ function draw(){
             }
         }
         closedSet.push(bestF);
+        pathTo(bestF);
     } else {
-        background(255,0,0);
+        background(backgcolor);
         noLoop();
     }
 }

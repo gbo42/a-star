@@ -11,27 +11,24 @@ function node(i, j){
     this.block = random(100) > 70 ? true : false;
 
     this.show = function(){
-        if(this.block){
-            fill(0);
-        } else {
-            noFill();
-        }
-        stroke(255);
+        stroke(75);
+        noFill();
         rect(this.i*w, this.j*w, w, w);
+
+        if(this.block){
+            noStroke();
+            fill(blockcolor);
+            ellipse(this.i*w+w/2, this.j*w+w/2, w/2);
+        }
     }
 
     this.open = function(){
-        fill(0,255,0);
+        fill(opencolor);
         rect(this.i*w, this.j*w, w, w);
     }
 
     this.closed = function(){
-        fill(255,0,0);
-        rect(this.i*w, this.j*w, w, w);
-    }
-
-    this.highlight = function(){
-        fill(255,0,0);
+        fill(closedcolor);
         rect(this.i*w, this.j*w, w, w);
     }
 
@@ -55,7 +52,7 @@ function node(i, j){
 }
 
 function pathTo(current){
-    stroke(180);
+    stroke(pathcolor);
     strokeWeight(10);
     while(current.parent){
         line(current.i*w+w/2, current.j*w+w/2, current.parent.i*w+w/2, current.parent.j*w+w/2);
